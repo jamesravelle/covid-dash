@@ -1,12 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head>
- 	<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <title>Page</title>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <!-- <link rel="stylesheet" href="styles/debug.css"> -->
+  </head>
+  <body>
+    <!-- COVID Dash hero -->
+    <section class="hero has-background-black">
+      <div class="hero-body">
+        <div class="container">
+          <p class="is-size-3 has-text-white has-text-centered">COVID Dash</p>
+        </div>
+      </div>
+    </section>
+    <!-- location and date inputs and submit button -->
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <!-- location input -->
+          <div class="column is-two-fifths">
+            <input class="input is-rounded" type="text" placeholder="Location">
+          </div>
+          <!-- date input -->
+          <div class="column is-two-fifths">
+            <input class="input is-rounded" type="text" placeholder="Date">
+          </div>
+          <!-- submit button -->
+          <div class="column">
+            <div class="control">
+              <button class="button is-black">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- map section -->
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-full has-background-grey">
+            <figure class="image center">
+              <img src="images/simple_us_map.png" alt="map of the USA">
+            </figure>    
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- COVID stats and graph section -->
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-half has-background-grey">
+            <div id="stats">
+              <figure class="image is-square">
+                <img src="images/stats_stock.jpg" alt="stats stock image">
+              </figure>
+              </div>
+          </div>
+          <div class="column is-half has-background-grey">
+            <div id="chartdiv">
+              <figure class="image is-square">
+                <img src="images/graph_stock.png" alt="graph stock image">
+              </figure>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- news headlines section -->
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-full">
+            <div id="newsHeadlines">
+              <h1 style="text-align: center;">News Headlines</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
