@@ -3,35 +3,45 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>COVID Dash</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="styles/debug.css"> -->
+    <style>
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+
+      .grid * { grid-column: 2 / 5; }
+
+    </style>
   </head>
   <body>
     <!-- COVID Dash hero -->
-    <section class="hero has-background-black">
+  <section class="has-background-white-ter">
+    <section class="hero is-primary is-bold">
       <div class="hero-body">
-        <div class="container">
-          <p class="is-size-3 has-text-white has-text-centered">COVID Dash</p>
-        </div>
+        <h1 class="is-size-1 has-text-white has-text-centered" style="font-family: Bungee;">COVID Dash</h1>
       </div>
     </section>
     <!-- location and date inputs and submit button -->
     <section class="section">
-      <div class="container">
+      <div class="container grid">
         <div class="columns">
           <!-- location input -->
           <div class="column is-two-fifths">
-            <input class="input is-rounded" type="text" placeholder="Location">
+            <input id="location" class="input" type="text" placeholder="Location">
           </div>
           <!-- date input -->
           <div class="column is-two-fifths">
-            <input class="input is-rounded" type="text" placeholder="Date">
+            <input id="date" class="input" type="date">
           </div>
           <!-- submit button -->
           <div class="column">
             <div class="control">
-              <button class="button is-black">Submit</button>
+              <button id="submit" class="button is-primary">Submit</button>
             </div>
           </div>
         </div>
@@ -41,7 +51,7 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-full has-background-grey">
+          <div class="column is-full">
             <figure class="image center">
               <img src="images/simple_us_map.png" alt="map of the USA">
             </figure>    
@@ -53,14 +63,14 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-half has-background-grey">
+          <div class="column is-half">
             <div id="stats">
               <figure class="image is-square">
                 <img src="images/stats_stock.jpg" alt="stats stock image">
               </figure>
               </div>
           </div>
-          <div class="column is-half has-background-grey">
+          <div class="column is-half">
             <div id="chartdiv">
               <figure class="image is-square">
                 <img src="images/graph_stock.png" alt="graph stock image">
@@ -77,10 +87,14 @@
           <div class="column is-full">
             <div id="newsHeadlines">
               <h1 style="text-align: center;">News Headlines</h1>
+                <figure class="image">
+                  <img src="Images/news.png" alt="paint news headlines image">
+                </figure>
             </div>
           </div>
         </div>
       </div>
     </section>
+  </section>
   </body>
 </html>
