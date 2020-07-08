@@ -20,33 +20,40 @@
   </head>
   <body>
     <!-- COVID Dash hero -->
-  <section class="has-background-white-ter">
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <h1 class="is-size-1 has-text-white has-text-centered" style="font-family: Bungee;">COVID Dash</h1>
-      </div>
-    </section>
-    <!-- location and date inputs and submit button -->
-    <section class="section">
-      <div class="container grid">
-        <div class="columns">
-          <!-- location input -->
-          <div class="column is-two-fifths">
-            <input id="location" class="input" type="text" placeholder="Location">
-          </div>
-          <!-- date input -->
-          <div class="column is-two-fifths">
-            <input id="date" class="input" type="date">
-          </div>
-          <!-- submit button -->
-          <div class="column">
-            <div class="control">
-              <button id="submit" class="button is-primary">Submit</button>
+    <section class="has-background-white-ter">
+      <section class="hero is-primary is-medium">
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-body">
+          <nav class="navbar">
+            <div class="container">
+              <div class="navbar-brand">
+                <a class="navbar-item is-size-1 has-text-white has-text-left" style="font-family: Bungee;">COVID Dash</a>
+                <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </div>
+              <!-- Hero buttons: current location, select state, date, and submit -->
+              <div id="navbarMenuHeroA" class="navbar-menu">
+                <div class="navbar-end">
+                  <button id="current-location" class="button">Current Location</button>
+                  <div class="select" id="location">
+                    <select>
+                      <option>Select State</option>
+                      <option>With options</option>
+                    </select>
+                  </div>
+                  <input id="date" class="input" type="date">
+                  <button id="submit" class="button is-white">Submit</button>
+                </div>
+              </div>
             </div>
-          </div>
+          </nav>
         </div>
-      </div>
+      </section>
     </section>
+
     <!-- map section -->
     <section class="section">
       <div class="container">
