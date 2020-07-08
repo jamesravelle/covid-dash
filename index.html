@@ -1,12 +1,107 @@
 <!DOCTYPE html>
 <html>
-    <head>
- 	<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <title>Page</title>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>COVID Dash</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="styles/debug.css"> -->
+    <style>
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+
+      .grid * { grid-column: 2 / 5; }
+
+    </style>
+  </head>
+  <body>
+    <!-- COVID Dash hero -->
+    <section class="has-background-white-ter">
+      <section class="hero is-primary is-medium">
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-body">
+          <nav class="navbar">
+            <div class="container">
+              <div class="navbar-brand">
+                <a class="navbar-item is-size-1 has-text-white has-text-left" style="font-family: Bungee;">COVID Dash</a>
+                <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </div>
+              <!-- Hero buttons: current location, select state, date, and submit -->
+              <div id="navbarMenuHeroA" class="navbar-menu">
+                <div class="navbar-end">
+                  <button id="current-location" class="button">Current Location</button>
+                  <div class="select" id="location">
+                    <select>
+                      <option>Select State</option>
+                      <option>With options</option>
+                    </select>
+                  </div>
+                  <input id="date" class="input" type="date">
+                  <button id="submit" class="button is-white">Submit</button>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </section>
+    </section>
+
+    <!-- map section -->
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-full">
+            <figure class="image center">
+              <img src="images/simple_us_map.png" alt="map of the USA">
+            </figure>    
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- COVID stats and graph section -->
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-half">
+            <div id="stats">
+              <figure class="image is-square">
+                <img src="images/stats_stock.jpg" alt="stats stock image">
+              </figure>
+              </div>
+          </div>
+          <div class="column is-half">
+            <div id="chartdiv">
+              <figure class="image is-square">
+                <img src="images/graph_stock.png" alt="graph stock image">
+              </figure>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- news headlines section -->
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-full">
+            <div id="newsHeadlines">
+              <h1 style="text-align: center;">News Headlines</h1>
+                <figure class="image">
+                  <img src="Images/news.png" alt="paint news headlines image">
+                </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  </body>
 </html>
