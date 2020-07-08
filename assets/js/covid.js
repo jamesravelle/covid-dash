@@ -34,61 +34,6 @@ function getCovidStatsClick(state, date){
       })
 }
 
-/*
-Build Graph/Table
-*/
-function getCovidStatsDate(state, date){
-    var query = "https://covidtracking.com/api/v1/states/" + state.toLocaleLowerCase() + "/" + date + ".json";
-    console.log(query);
-      $.ajax({ // Added return statement here
-          url: query,
-          method:"GET",
-          error:function (xhr, ajaxOptions, thrownError){
-              if(xhr.status==404) {
-                  alertError();
-                  return;
-              }
-          }
-      }).then(function(response){
-        var newDiv = $('<div>');
-        newDiv.text(formatDate(date) + ": " + response.positiveIncrease);
-        $("#graph").append(newDiv);  
-      })
-}
-
-function buildGraph(state, date){
-  console.log("Date: " + date);
-  var month = date[6] + "" + date[7];
-  var day = date[4] + "" + date[5];
-  var year = date[0] + "" + date[1] + "" + date[2] + "" + date[3];
-  for (var i = 0; i < 8; i++){
-    console.log("Date: " + outputDateGraph(-i, year, month, day));
-    getCovidStatsDate(state, outputDateGraph(-i, parseInt(year), parseInt(month), parseInt(day)))
-  }
-}
-
-function outputDateGraph(numDays, year, month, day){
-  // Function to retrieve date +/- amount of days
-  var targetDate = new Date(year, month, day);
-  console.log(targetDate);
-  console.log(year);
-  console.log(month);
-  console.log(day);
-  targetDate.setDate(targetDate.getDate() + numDays);
-  var year = targetDate.getFullYear();
-  var month = targetDate.getMonth();
-  var day = targetDate.getDate();
-  // Check if month/day are single digit. If they are add a 0 before it (06, 01, etc.)
-  if(month.toString().length < 2){
-      month = "0" + month;
-  }
-  if(day.toString().length < 2){
-      day = "0" + day;
-  }
-  return year + "" + month + "" + day;
-}
-
-
 function alertError(){
     
 }
@@ -110,6 +55,8 @@ $('#submit').on("click", function(e){
     e.preventDefault();
     var location = $('#location').val();
     date = $('#date').val();
+    date = date.replace(/-/g, '');
+    console.log(date);
     getCovidStatsClick(location, parseInt(date));
     buildGraph(location, date)
     stateArray = [];
