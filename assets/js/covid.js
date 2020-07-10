@@ -356,8 +356,6 @@ polygonSeries.events.on("inited", function () {
     }, 1000);
 });
 
-
-
 /*
 
 Click events
@@ -379,7 +377,6 @@ $('#submit').on("click", function(e){
   hospitalizedArray = [];
   // News call
   displayStateInfo($('#location option:selected').text());
-
   // Testing call
   getTesting($('#location option:selected').text());
 })
@@ -400,6 +397,7 @@ $('#question').on("click", function(e){
   e.preventDefault();
   $('.how-to-use').addClass('is-active');
 })
+
 
 $('#show-testing').on("click", function(e){
   e.preventDefault();
