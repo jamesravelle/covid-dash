@@ -370,7 +370,10 @@ $('#submit').on("click", function(e){
   positiveArray = [];
   colorArray = [];
   hospitalizedArray = [];
+  // News call
   displayStateInfo();
+
+  // Testing call
 })
 
 $('#current-location').on("click", function(e){
@@ -395,6 +398,7 @@ $('.delete').on("click", function(){
   $('.how-to-use').removeClass('is-active');
   $('.error').removeClass('is-active');
   $('.table-modal').removeClass('is-active');
+  $('.testing-modal').removeClass('is-active');
 })
 
 });
