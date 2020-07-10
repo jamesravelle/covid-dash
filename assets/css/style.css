@@ -40,7 +40,14 @@
     color:white;
   }
 
+  .question-p{
+    text-align:left;
+    margin:5px;
+  }
+
   #question{
+    margin:0 auto;
+
     color:white;
     cursor:pointer;
   }
@@ -103,11 +110,25 @@
   }
 
   #show-table{
+    display:block;
     background: rgba(0,108,255);
     color:white;
   }
 
   #show-table:hover{
+    background: rgba(0,25,194);
+    color:white;
+  }
+
+
+  #show-testing{
+    display:block;
+    background: rgba(0,108,255);
+    color:white;
+    margin-top:20px;
+  }
+
+  #show-testing:hover{
     background: rgba(0,25,194);
     color:white;
   }
@@ -130,6 +151,12 @@
     color:gray;
   }
 
+
+  .news-section{
+    opacity:0;
+  }
+
+
   @media (max-width:1024px){
     .navbar-brand h1{ text-align:center; }
     .select{width:100%; margin-bottom:10px;}
@@ -139,4 +166,5 @@
     #current-location{width:49%; margin-left:2%; }
     header{ background: rgba(0,108,255); }
     #question{ text-align:center; }
+    .question-p{ text-align:center; }
   }

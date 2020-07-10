@@ -1,9 +1,13 @@
-function displayStateInfo() {
+function displayStateInfo(x) {
   // var state = $(this).attr("state");
-  var state = $('#location option:selected').text().trim();
+  var state = x.trim();
   var apiKey = "7a4fe6eeb916d074e239c499a4d5f4a8";
   var minDate = "2020-01-01"
   var maxDate =  $('#date').val();
+  if (maxDate === ""){
+    maxDate = "Today";
+  }
+
       // Constructing a queryURL
       var queryURL = "https://gnews.io/api/v3/search?q=coronavirus+" + state + "&mindate=" + minDate + "&maxdate=" + maxDate + "&token=" + apiKey;
 
@@ -15,6 +19,7 @@ function displayStateInfo() {
       // return "$this.state"
         // Data comes back from the request
         .then(function(response) {
+          $('.news-section').css("opacity",1);
           console.log(response);
           console.log(queryURL);
           // storing the data from the AJAX request in the results variable

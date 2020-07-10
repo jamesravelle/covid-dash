@@ -154,6 +154,11 @@ Geo Location
     }).then(function(response){
       console.log(response);
        getCovidStatsClick(response.results[0].components.state_code, date)
+       // News call
+       displayStateInfo(response.results[0].components.state);
+       // Testing call
+       console.log("Get Testing");
+       getTesting(response.results[0].components.state);
     })
   }
 
@@ -371,9 +376,9 @@ $('#submit').on("click", function(e){
   colorArray = [];
   hospitalizedArray = [];
   // News call
-  displayStateInfo();
-
+  displayStateInfo($('#location option:selected').text());
   // Testing call
+  getTesting($('#location option:selected').text());
 })
 
 $('#current-location').on("click", function(e){
@@ -391,6 +396,12 @@ $('#show-table').on("click", function(e){
 $('#question').on("click", function(e){
   e.preventDefault();
   $('.how-to-use').addClass('is-active');
+})
+
+
+$('#show-testing').on("click", function(e){
+  e.preventDefault();
+  $('.testing-modal').addClass('is-active');
 })
 
 // Close modals
