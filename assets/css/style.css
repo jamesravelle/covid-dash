@@ -50,7 +50,7 @@
     text-decoration:underline;
   }
 
-  #chart-wrapper{
+  .chart-wrapper{
     box-shadow:2px 2px 9px black;
     padding-bottom:10px;
     overflow:hidden;
@@ -112,6 +112,23 @@
     color:white;
   }
 
+  #news-headline{
+    font-family: 'Orbitron', sans-serif;
+    font-size:32px;
+    font-weight:bold;
+  }
+
+  #covid-news h5{
+    font-size:20px;
+    font-weight:bold;
+  }
+
+  #news-date{
+    font-size:14px;
+    font-style: italic;
+    font-weight:bold;
+    color:gray;
+  }
 
   @media (max-width:1024px){
     .navbar-brand h1{ text-align:center; }

@@ -370,6 +370,7 @@ $('#submit').on("click", function(e){
   positiveArray = [];
   colorArray = [];
   hospitalizedArray = [];
+  displayStateInfo();
 })
 
 $('#current-location').on("click", function(e){

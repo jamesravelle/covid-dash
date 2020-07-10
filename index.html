@@ -95,7 +95,7 @@
         <div class="columns">
 
           <div class="column is-three-fifths">
-            <div id="chart-wrapper">
+            <div class="chart-wrapper">
               <!-- map section -->
               
               <div id="chartdiv"></div>
@@ -104,7 +104,7 @@
             </div>
           </div>
           <div class="column is-two-fifths">
-            <div id="chart-wrapper" style="padding:20px;">
+            <div class="chart-wrapper" style="padding:20px;">
               <!-- stats section -->
               <h1 id="total-header"></h1>
               <table class="output-table">
@@ -141,38 +141,16 @@
         </div>
       </div>
     </section>
-    <!-- COVID stats and graph section -->
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-half">
-            <div id="stats">
-              <figure class="image is-square">
-                <img src="images/stats_stock.jpg" alt="stats stock image">
-              </figure>
-              </div>
-          </div>
-          <div class="column is-half">
-            <div>
-              <figure class="image is-square">
-                <img src="images/graph_stock.png" alt="graph stock image">
-              </figure>
-              </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- news headlines section -->
     <section class="section">
       <div class="container">
         <div class="columns">
           <div class="column is-full">
-            <div id="newsHeadlines">
-              <h1 style="text-align: center;">News Headlines</h1>
-                <figure class="image">
-                  <img src="Images/news.png" alt="paint news headlines image">
-                </figure>
-            </div>
+            <div class="chart-wrapper" style="padding:20px;">
+            <h1 id="news-headline"></h1>
+            <p id="news-date"></p>
+            <div id="covid-news"></div>
+          </div>
           </div>
         </div>
       </div>
@@ -251,5 +229,6 @@
   <script src="assets/amcharts/maps.js"></script>
   <script src="assets/amcharts/usaLow.js"></script>
   <script src="assets/js/covid.js"></script>
+  <script src="assets/js/news.js"></script>
 </html>
 
