@@ -7,6 +7,7 @@ function displayStateInfo(x) {
   if (maxDate === ""){
     maxDate = "Today";
   }
+
       // Constructing a queryURL
       var queryURL = "https://gnews.io/api/v3/search?q=coronavirus+" + state + "&mindate=" + minDate + "&maxdate=" + maxDate + "&token=" + apiKey;
 
