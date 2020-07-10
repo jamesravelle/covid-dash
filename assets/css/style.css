@@ -47,7 +47,6 @@
 
   #question{
     margin:0 auto;
-
     color:white;
     cursor:pointer;
   }
@@ -120,7 +119,6 @@
     color:white;
   }
 
-
   #show-testing{
     display:block;
     background: rgba(0,108,255);
@@ -151,11 +149,9 @@
     color:gray;
   }
 
-
   .news-section{
     opacity:0;
   }
-
 
   @media (max-width:1024px){
     .navbar-brand h1{ text-align:center; }
