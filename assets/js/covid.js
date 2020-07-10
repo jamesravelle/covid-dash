@@ -1,12 +1,23 @@
+$( document ).ready(function() {
+  console.log($('#location').val());
+ 
 // Get Covid Numbers by state
 // Set global variables
 var result = "";
 var stateAbbr = "";
 var stateName = "";
+var stateArray = [];
+var positiveArray = [];
+var colorArray = [];
+var hospitalizedArray = [];
+var heatmapSet = true;
+
 // Default date format YYYYMMDD ex. 20200612. Set default date to yesterday
 var date = outputDate(-1);
 // Format outputted date
 printDate(date);
+// Run USA stats on load
+getCovidStatsClick("USA", date)
 
 function getCovidStatsClick(state, date){
   if(state === "" || state === "USA"){
@@ -28,42 +39,29 @@ function getCovidStatsClick(state, date){
           }
       }).then(function(response){
           console.log(response);
-          outputClickedStats(state, response.positive, response.negative, response.hospitalizedCurrently, response.death);
+          outputClickedStats(state, response.positive, response.negative, response.death, response.positiveIncrease, response.hospitalizedCurrently);
           printDate(date.toString());
           printLocation(state);
       })
 }
 
 function alertError(){
-    
+  $('.error').addClass('is-active');
 }
 
-function outputClickedStats(state, pos,neg,hosp,deaths){
+function outputClickedStats(state, pos, neg, deaths, dailyPos, hospital){
     $('#total-header').text("Total for " + state + " as of " + formatDate(date));
     $('#positive').text(pos)
     $('#negative').text(neg)
-    $('#hospitalized').text(hosp)
     $('#deaths').text(deaths)
+    $('#daily-positive').text(dailyPos)
+    $('#daily-hospital').text(hospital)
 }
 
 function zoomMap(x){
     var stateString = "US-" + x.toUpperCase();
     chart.zoomToMapObject(polygonSeries.getPolygonById(stateString));
 }
-
-$('#submit').on("click", function(e){
-    e.preventDefault();
-    var location = $('#location').val();
-    date = $('#date').val();
-    date = date.replace(/-/g, '');
-    console.log(date);
-    getCovidStatsClick(location, parseInt(date));
-    buildGraph(location, date)
-    stateArray = [];
-    positiveArray = [];
-    colorArray = [];
-    hospitalizedArray = [];
-})
 
 /*
 
@@ -140,31 +138,27 @@ Geo Location
   }
 
   function printDate(date){
-    $('#output-date').text(formatDate(date));
+    $('#date').val(formatDate(date));
   }
 
+  // Change date form YYYYMMDD -> MM/DD/YYYY
   function formatDate(date){
-    // Change date form YYYYMMDD -> MM/DD/YYYY
     return date[4] + date[5] + "/" + date[6] + date[7] + "/" + date[0] + date[1] + date[2] + date[3];
   }
   
+// Convert longitude/latitude into city state
   function callLocationAPI(x){
     $.ajax({
         url:x,
         method:"GET"
     }).then(function(response){
-      // Convert longitude/latitude into city state
       console.log(response);
        getCovidStatsClick(response.results[0].components.state_code, date)
     })
   }
-  
-  $('#current-location').on("click", function(){
-    getLocation();
-  })
 
+// Function to retrieve date +/- amount of days
 function outputDate(numDays){
-    // Function to retrieve date +/- amount of days
     var targetDate = new Date();
     targetDate.setDate(targetDate.getDate() + numDays);
     var year = targetDate.getFullYear();
@@ -180,18 +174,13 @@ function outputDate(numDays){
     return year + "" + month + "" + day;
 }
 
-
-
 /*
 
 Heat map
 
 */
-var stateArray = [];
-var positiveArray = [];
-var colorArray = [];
-var hospitalizedArray = [];
 
+// Add state names
 var labelSeries = chart.series.push(new am4maps.MapImageSeries());
 var labelTemplate = labelSeries.mapImages.template.createChild(am4core.Label);
 labelTemplate.horizontalCenter = "middle";
@@ -200,14 +189,15 @@ labelTemplate.fontSize = 10;
 labelTemplate.nonScaling = true;
 labelTemplate.interactionsEnabled = false;
 
+// Load initial map
 polygonSeries.events.on("inited", function () {
   polygonSeries.mapPolygons.each(function (polygon) {
-    // Fill
     let state = polygon.dataItem.dataContext.id.split("-").pop();
     getCovidStatsMap(state,date);
   });
 });
 
+// API call for map
 function getCovidStatsMap(x, y){
     var state = x;
     // date format: 20200501
@@ -227,17 +217,30 @@ function getCovidStatsMap(x, y){
     })
 }
 
+// Table output
+function buildTable(){
+  for(var i = 0; i < stateArray.length; i++){
+    var newRow = $('<tr>');
+    var cell1 = $('<td>');
+    cell1.text(stateArray[i]);
+    $('#table-date').text(formatDate(date));
+    var cell2 = $('<td>');
+    cell2.text(positiveArray[i]);
+    var cell3 = $('<td>');
+    cell3.text(hospitalizedArray[i]);
+    newRow.append(cell1,cell2,cell3);
+    $('#state-data').append(newRow)
+  }
+}
+
+// Heat map build
 function buildHeatMap(state, pos, hosp){
     stateArray.push(state);
     positiveArray.push(pos);
     hospitalizedArray.push(hosp);
     if(stateArray.length === 51){
-        var max = Math.max.apply(null, positiveArray);
-        var min = Math.min.apply(null, positiveArray);
-        console.log(max + "/" + min);
+        heatmapSet = true;
         for(var i = 0; i < stateArray.length; i++){
-          var percentValue = parseInt((positiveArray[i] / (max - min)) * 100);
-          console.log(stateArray[i] + "/" + positiveArray[i] + ": " + percentValue);
           if(positiveArray[i] === 0 || positiveArray[i] < 0){
             // 0 or not defined
             colorArray.push('#B8B8B8');
@@ -279,6 +282,21 @@ function buildHeatMap(state, pos, hosp){
     }
 }
 
+function createHeatMapKey(){
+  var heatColors = ['#B8B8B8', '#f9ff00', '#f9f400', '#f9eb00', '#f9d900','#f9c700','#f9b800','#faa600','#fa9700','#fb7d00','#fc6300','#ff0000']
+  var heatNumbers = ['N/A','< 100','100-200','200 - 300','300 - 400','400 - 500','500 - 1000','1000 - 1500','1500 - 2000','2000 - 5000','5000 - 10,000','10,000+']
+  
+  for(var i = 0; i < 12; i++){
+    var newDiv = $('<div>');
+    newDiv.text(heatNumbers[i]);
+    newDiv.css("background-color", heatColors[i]);
+    newDiv.addClass("column");
+    $('#heatmap-key').append(newDiv);
+  }
+}
+
+createHeatMapKey()
+
 function getColorCode(state){
     stateArray.indexOf(state);
     return colorArray[stateArray.indexOf(state)];
@@ -308,6 +326,8 @@ function getHospitalized(state){
 
 polygonSeries.events.on("inited", function () {
     setInterval(function(){ 
+      if(heatmapSet){
+        console.log("running")
         polygonSeries.mapPolygons.each(function (polygon) {
             // Fill
             let state = polygon.dataItem.dataContext.id.split("-").pop();
@@ -326,5 +346,59 @@ polygonSeries.events.on("inited", function () {
           New Cases: ` + getPositiveCases(state) + `[/]
           Hospitalized: ` + getHospitalized(state)
         });
+        heatmapSet = false;
+      }
     }, 1000);
+});
+
+/*
+
+Click events
+
+*/
+
+$('#submit').on("click", function(e){
+  e.preventDefault();
+  console.log($('#location option:selected').text());
+  heatmapSet = true
+  var location = $('#location').val();
+  date = $('#date').val();
+  date = date.replace(/-/g, '');
+  console.log(date);
+  getCovidStatsClick(location, parseInt(date));
+  stateArray = [];
+  positiveArray = [];
+  colorArray = [];
+  hospitalizedArray = [];
+  // News call
+  displayStateInfo();
+
+  // Testing call
+})
+
+$('#current-location').on("click", function(e){
+  e.preventDefault();
+  getLocation();
+})
+
+// Modals
+$('#show-table').on("click", function(e){
+  e.preventDefault();
+  $('.table-modal').addClass('is-active');
+  buildTable();
+})
+
+$('#question').on("click", function(e){
+  e.preventDefault();
+  $('.how-to-use').addClass('is-active');
+})
+
+// Close modals
+$('.delete').on("click", function(){
+  $('.how-to-use').removeClass('is-active');
+  $('.error').removeClass('is-active');
+  $('.table-modal').removeClass('is-active');
+  $('.testing-modal').removeClass('is-active');
+})
+
 });
