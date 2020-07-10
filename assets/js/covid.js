@@ -371,6 +371,10 @@ $('#submit').on("click", function(e){
   var location = $('#location').val();
   date = $('#date').val();
   date = date.replace(/-/g, '');
+  if(date.includes("/")){
+    var newDate = date.replace(/\//g, '');
+    date = newDate[4] + newDate[5] + newDate[6] + newDate[7] + newDate[0] + newDate[1] + newDate[2] + newDate[3];
+  }
   console.log(date);
   getCovidStatsClick(location, parseInt(date));
   stateArray = [];
