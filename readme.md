@@ -2,8 +2,10 @@
 Covid Dash is a web application that displays current and historical Covid-19 statistics in the USA. The data will default to all of the United States 
 for yesterday's date (the most up to date data available).
 
-[View Application](https://jamesravelle.github.io/project-1/)
-[View Project Repo](https://github.com/jamesravelle/project-1)
+[View Application](https://jamesravelle.github.io/covid-dash/)
+
+[View Project Repo](https://github.com/jamesravelle/covid-dash)
+
 [Screenshot](Images/screenshot.png)
 
 ###### How to Use:
