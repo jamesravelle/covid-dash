@@ -22,9 +22,9 @@ getCovidStatsClick("USA", date)
 function getCovidStatsClick(state, date){
   if(state === "" || state === "USA"){
     state = "USA";
-    var query = "https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/us/" + date + ".json";
+    var query = "https://covidtracking.com/api/v1/us/" + date + ".json";
   } else {
-    var query = "https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/states/" + state.toLocaleLowerCase() + "/" + date + ".json";
+    var query = "https://covidtracking.com/api/v1/states/" + state.toLocaleLowerCase() + "/" + date + ".json";
     zoomMap(state);
   } 
     console.log(query);
@@ -225,7 +225,7 @@ function getCovidStatsMap(x, y){
     var state = x;
     // date format: 20200501
     var date = y;
-    var query = "https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/states/" + state.toLocaleLowerCase() + "/" + date + ".json";
+    var query = "https://covidtracking.com/api/v1/states/" + state.toLocaleLowerCase() + "/" + date + ".json";
     console.log("Query: " + query)
     $.ajax({ // Added return statement here
         url:query,
